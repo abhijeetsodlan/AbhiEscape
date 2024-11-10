@@ -1,0 +1,269 @@
+/* Reset margin and padding to eliminate any default space */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Ensures padding and border do not affect element's width */
+}
+
+/* Set body and html to take full width and height */
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;  /* Prevents horizontal overflow and scrollbars */
+  font-family: Arial, sans-serif; /* Optional, for better font consistency */
+}
+
+/* Ensuring the main container (home-container) doesn't overflow */
+.home-container {
+  background-image: url('/images/background.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden; /* Prevents any child element overflow */
+}
+
+/* Hero Image Styling */
+.hero-image {
+  width: 300px;
+  height: auto;
+  position: absolute;
+  bottom: 20px;  /* Positioning the hero at the bottom */
+  left: 140px;
+  transition: bottom 0.5s ease; /* Smooth transition for the jump effect */
+}
+
+/* Jumping animation for the hero */
+.hero-image.jump {
+  bottom: 310px; /* Adjust the height of the jump */
+}
+
+/* Mobile Responsiveness for Hero Image */
+@media (max-width: 768px) {
+  .hero-image {
+    width: 200px;
+    left: 20px;
+    bottom: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-image {
+    width: 180px;
+    left: 0;
+    bottom: 80px;
+  }
+}
+
+/* Up Arrow Button Styling */
+.up-arrow-btn {
+  position: absolute;
+  bottom: 80px;
+  right: 100px;
+  background-color: black;
+  color: white;
+  font-size: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.up-arrow-btn:hover {
+  background-color: #555; /* Darker background when hovered */
+}
+
+.up-arrow-btn:disabled {
+  background-color: #ddd; /* Lighter background when disabled */
+  cursor: not-allowed; /* Change cursor when disabled */
+}
+
+/* Enemy Image Styling */
+.enemy-image {
+  position: absolute;
+  bottom: 100px; /* Same bottom margin as the hero image */
+  right: -150px; /* Start from the right off-screen */
+  width: 100px;  /* Adjust the size of the enemy */
+  height: auto;
+  animation: moveEnemy 2s linear infinite;  /* Looping animation for movement */
+}
+/* Keyframe Animation for Enemy Movement */
+
+@keyframes moveEnemy {
+  0% {
+    right: -100px;  /* Start off-screen */
+  }
+  100% {
+    right: 100vw;  /* Move to the left side completely */
+  }
+}
+
+.game-over-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.game-over-message {
+  font-size: 3em;
+  color: red;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px 40px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.restart-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.restart-btn:hover {
+  background-color: #45a049;
+}
+.start-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+
+.start-screen h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.game-instructions {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 80%;
+}
+
+.game-instructions p {
+  margin: 10px 0;
+}
+
+.start-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+
+.start-button:hover {
+  background-color: #218838;
+}
+
+.game-name {
+  font-size: 3rem;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.start-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.start-button:hover {
+  background-color: #45a049;
+}
+
+.scoreboard {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5em;
+  color: #fff;
+  background-color: #333;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+.game-over-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  z-index: 10;
+  backdrop-filter: blur(5px);
+}
+.final-score {
+  font-size: 1.5em;
+  color: #FFD700;
+  margin-top: 10px;
+}
+.up-arrow-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #28a745;
+  color: white;
+  font-size: 3rem;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.up-arrow-btn:hover {
+  background-color: #218838;
+  transform: scale(1.1);
+}
+
+.up-arrow-btn:active {
+  background-color: #1e7e34;
+  transform: scale(0.9);
+}
